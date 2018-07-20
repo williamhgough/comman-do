@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package williamhgough.commando.todo;
+option go_package = "todo";
+
+service Commando {
+    rpc MakeTodo(Todo) returns (Empty);
+    rpc GetTodo(TodoQuery) returns (Todo);
+    rpc AllTodos(Empty) returns (TodoResponse);
+    rpc RemoveTodo(TodoQuery) returns (Empty);
+}
+
+message TodoQuery {
+    int32 id = 1;
+}
+
+message TodoResponse {
+    repeated Todo todos = 1;
+}
+
+message Todo {
+    int32 ID = 1;
+    string title = 2;
+    bool complete = 3;
+}
+
+message Empty {
+}
