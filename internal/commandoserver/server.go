@@ -56,3 +56,12 @@ func (s *Server) RemoveTodo(ctx context.Context, q *pb.TodoQuery) (*pb.Empty, er
 	delete(todos, q.Id)
 	return nil, nil
 }
+
+// MarkComplete implements the command interface method MarkComplete
+func (s *Server) MarkComplete(ctx context.Context, q *pb.TodoQuery) (*pb.Empty, error) {
+	if q.Id < 1 {
+		return nil, twirp.InvalidArgumentError("ID:", "Must be greater than zero")
+	}
+	todos[q.Id].Complete = true
+	return nil, nil
+}
