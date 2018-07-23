@@ -53,6 +53,13 @@ func main() {
 		if err != nil {
 			log.Println("could not remove todo:", err)
 		}
+	case "complete":
+		_, err := client.MarkComplete(context.Background(), &todo.TodoQuery{
+			Id: int32(*id),
+		})
+		if err != nil {
+			log.Println("could not complete todo:", err)
+		}
 	default:
 		log.Println("invalid command, please try again.")
 	}
