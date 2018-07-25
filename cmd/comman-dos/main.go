@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/williamhgough/comman-do/internal/commandoserver"
@@ -12,4 +13,5 @@ func main() {
 	twirpHandler := todo.NewCommandoServer(server, nil)
 
 	http.ListenAndServe(":8080", twirpHandler)
+	fmt.Println("Comman-Do server listening on :8080")
 }
